@@ -282,5 +282,5 @@ epub_exclude_files = [
 todo_include_todos = True
 
 intersphinx_mapping = {
-    'linux': ('https://www.gnu.org/doc/doc.html', None),
+    'python': ('http://docs.python.org/', None),
 }
