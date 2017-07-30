@@ -1,4 +1,4 @@
-Shell入门
+Bash Shell
 ---------------
 
  .. toctree::
