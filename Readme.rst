@@ -1,7 +1,7 @@
 Linux学习笔记
 ============================
 
-Readthedocs文档地址 `Linux学习笔记 <http://linux-cww.readthedocs.org/>`_。
+Readthedocs文档地址 `Linux学习笔记 <http://linux-of-cww.readthedocs.io/>`_。
 
 -----------
 

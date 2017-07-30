@@ -50,7 +50,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'linux-guide'
-copyright = u'2017. A <a href="https://github.com/icaoweiwei/linux-guide">Linux Guide</a> Project. <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">CC BY-NC-SA 3.0</a>'
+copyright = u'2017. <a href="https://github.com/icaoweiwei/linux-guide">Linux学习笔记</a>  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">CC BY-NC-SA 3.0</a>'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
