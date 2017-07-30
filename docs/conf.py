@@ -199,10 +199,10 @@ htmlhelp_basename = 'linuxguidedoc'
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
-# latex_documents = [
-#   ('index', 'linuxguide.tex', u'Linux Guide Documentation',
-#    u'CaoWeiwei', 'manual'),
-# ]
+latex_documents = [
+  ('index', 'linuxguide.tex', u'Linux Guide Documentation',
+   u'CaoWeiwei', 'manual'),
+]
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
