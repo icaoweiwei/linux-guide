@@ -2,7 +2,7 @@
 
 ## 新增与删除用户
 
-### useradd
+### `useradd`
 
 ```sh
 [root@www ~]# useradd [-u UID] [-g 初始群组] [-G 次要群组] [-mM] [-c 说明栏] [-d 家目录绝对路径] [-s shell] 使用者账号名
@@ -31,7 +31,7 @@ drwx------ 4 vbird1 vbird1 4096 Feb 25 09:38 /home/vbird1
 /etc/group:vbird1:x:505:    <==默认会创建一个与账号一模一样的群组名
 ```
 
-#### useradd 默认值
+#### `useradd` 默认值
 
 ```sh
 [root@www ~]# useradd -D
@@ -46,7 +46,7 @@ CREATE_MAIL_SPOOL=yes   <==是否主动帮使用者创建邮件信箱(mailbox)
 
 这个数据其实是保存在 /etc/default/useradd 文件中的！
 
-### passwd
+### `passwd`
 
 ```sh
 [root@www ~]# passwd [--stdin]  <==所有人均可使用来改自己的口令
@@ -88,7 +88,7 @@ passwd: all authentication tokens updated successfully.
 - 口令不要使用简单的关系式，如 1+1=2， Iamvbird 等；
 - 口令尽量使用大小写字符、数字、特殊字符($,\_,-等)的组合。
 
-### chage
+### `chage`
 
 ```sh
 [root@www ~]# chage [-ldEImMW] 账号名
@@ -127,7 +127,7 @@ Changing password for agetest
 (current) UNIX password:  <==这个账号被强制要求必须要改口令！
 ```
 
-### usermod
+### `usermod`
 
 ```sh
 [root@www ~]# usermod [-cdegGlsuLU] username
@@ -175,7 +175,7 @@ drwxr-xr-x  4 vbird3 vbird3 4096 Sep  4 18:15 .mozilla
 # 使用 chmod 没有 -R ，是因为我们仅要修改目录的权限而非内部文件的权限！
 ```
 
-### userdel
+### `userdel`
 
 删除用户的相关数据，而用户的数据有：
 
@@ -198,7 +198,7 @@ drwxr-xr-x  4 vbird3 vbird3 4096 Sep  4 18:15 .mozilla
 
 ## 用户功能
 
-### finger
+### `finger`
 
 finger 可以查阅很多用户相关的信息，大部分都是在 /etc/passwd 这个文件里面的信息。
 
