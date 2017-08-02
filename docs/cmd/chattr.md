@@ -1,3 +1,5 @@
+# ``chattr``
+
 有时候你发现用`root`权限都不能修改某个文件，大部分原因是曾经用`chattr`命令锁定该文件了。
 
 `chattr`命令的作用很大，其中一些功能是由Linux内核版本来支持的，不过现在生产绝大部分跑的Linux系统都是2.6以上内核了。
@@ -9,9 +11,11 @@
 这两个命令是用来查看和改变文件、目录属性的，与`chmod`这个命令相比，`chmod`只是改变文件的读写、执行权限，更底层的属性控制是由`chattr`来改变的。
 
 ## chattr命令的用法
-```
+
+```sh
 chattr [ -RVf ] [ -v version ] [ mode ] files…
 ```
+
 最关键的是在`[mode]`部分，`[mode]`部分是由`+-=`和`[ASacDdIijsTtu]`这些字符组合的，这部分是用来控制文件的属性。
 
 * `+`：在原有参数设定基础上，追加参数。
@@ -32,23 +36,29 @@ chattr [ -RVf ] [ -v version ] [ mode ] files…
 ## 应用举例
 
 ### 用chattr命令防止系统中某个关键文件被修改
+
+```sh
+chattr +i /etc/resolv.conf
 ```
-# chattr +i /etc/resolv.conf
-```
+
 然后用`mv /etc/resolv.conf`等命令操作于该文件，都是得到`Operation not permitted`的结果。
 vim编辑该文件时会提示`W10: Warning: Changing a readonly file`错误。
 
 要想修改此文件就要把i属性去掉：
-```
+
+```sh
 chattr -i /etc/resolv.conf
-# lsattr /etc/resolv.conf
+lsattr /etc/resolv.conf
 ```
+
 会显示如下属性
-```
+
+```sh
 ----i-------- /etc/resolv.conf
 ```
 
 ### 让某个文件只能往里面追加数据，但不能删除，适用于各种日志文件
-```
-# chattr +a /var/log/messages
+
+```sh
+chattr +a /var/log/messages
 ```

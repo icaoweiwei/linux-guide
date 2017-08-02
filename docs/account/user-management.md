@@ -3,7 +3,8 @@
 ## 新增与删除用户
 
 ### useradd
-```
+
+```sh
 [root@www ~]# useradd [-u UID] [-g 初始群组] [-G 次要群组] [-mM] [-c 说明栏] [-d 家目录绝对路径] [-s shell] 使用者账号名
 选项与参数：
 -u  ：后面接的是 UID ，是一组数字。直接指定一个特定的 UID 给这个账号；
@@ -31,20 +32,23 @@ drwx------ 4 vbird1 vbird1 4096 Feb 25 09:38 /home/vbird1
 ```
 
 #### useradd 默认值
-```
+
+```sh
 [root@www ~]# useradd -D
-GROUP=100		<==默认的群组
-HOME=/home		<==默认的家目录所在目录
-INACTIVE=-1		<==口令失效日，在 shadow 内的第 7 栏
-EXPIRE=			<==账号失效日，在 shadow 内的第 8 栏
-SHELL=/bin/bash		<==默认的 shell
-SKEL=/etc/skel		<==用户家目录的内容数据参考目录
+GROUP=100               <==默认的群组
+HOME=/home              <==默认的家目录所在目录
+INACTIVE=-1             <==口令失效日，在 shadow 内的第 7 栏
+EXPIRE=                 <==账号失效日，在 shadow 内的第 8 栏
+SHELL=/bin/bash         <==默认的 shell
+SKEL=/etc/skel          <==用户家目录的内容数据参考目录
 CREATE_MAIL_SPOOL=yes   <==是否主动帮使用者创建邮件信箱(mailbox)
 ```
+
 这个数据其实是保存在 /etc/default/useradd 文件中的！
 
-## passwd
-```
+### passwd
+
+```sh
 [root@www ~]# passwd [--stdin]  <==所有人均可使用来改自己的口令
 [root@www ~]# passwd [-l] [-u] [--stdin] [-S] [-n 日数] [-x 日数] [-w 日数] [-i 日期] 账号 <==root 功能
 选项与参数：
@@ -72,9 +76,11 @@ passwd: all authentication tokens updated successfully.
 ```
 
 #### PAM 模块
-新的 distributions 是使用较严格的 PAM 模块来管理口令，这个管理的机制写在 /etc/pam.d/passwd 当中。而该文件与口令有关的测试模块就是使用：pam_cracklib.so，这个模块会检验口令相关的信息， 并且取代 /etc/login.defs 内的 PASS_MIN_LEN 的配置啦！
+
+新的发行版是使用较严格的 PAM 模块来管理口令，这个管理的机制写在 ``/etc/pam.d/passwd`` 当中。而该文件与口令有关的测试模块就是使用：``pam_cracklib.so``，这个模块会检验口令相关的信息，并且取代 ``/etc/login.defs`` 内的 ``PASS_MIN_LEN`` 的配置啦！
 
 #### 口令要求
+
 - 口令不能与账号相同；
 - 口令尽量不要选用字典里面会出现的字符串；
 - 口令需要超过 8 个字符；
@@ -83,7 +89,8 @@ passwd: all authentication tokens updated successfully.
 - 口令尽量使用大小写字符、数字、特殊字符($,\_,-等)的组合。
 
 ### chage
-```
+
+```sh
 [root@www ~]# chage [-ldEImMW] 账号名
 选项与参数：
 -l ：列出该账号的详细口令参数；
@@ -121,7 +128,8 @@ Changing password for agetest
 ```
 
 ### usermod
-```
+
+```sh
 [root@www ~]# usermod [-cdegGlsuLU] username
 选项与参数：
 -c  ：后面接账号的说明，即 /etc/passwd 第五栏的说明栏，可以加入一些账号的说明。
@@ -138,7 +146,7 @@ Changing password for agetest
 -U  ：将 /etc/shadow 口令栏的 ! 拿掉，解冻啦！
 ```
 
-```
+```sh
 范例一：修改使用者 vbird2 的说明栏，加上『VBird's test』的说明。
 [root@www ~]# usermod -c "VBird's test" vbird2
 [root@www ~]# grep vbird2 /etc/passwd
@@ -168,11 +176,14 @@ drwxr-xr-x  4 vbird3 vbird3 4096 Sep  4 18:15 .mozilla
 ```
 
 ### userdel
+
 删除用户的相关数据，而用户的数据有：
+
 - 用户账号/口令相关参数：/etc/passwd, /etc/shadow
 - 使用者群组相关参数：/etc/group, /etc/gshadow
 - 用户个人文件数据： /home/username, /var/spool/mail/username..
-```
+
+```sh
 [root@www ~]# userdel [-r] username
 选项与参数：
 -r  ：连同用户的家目录也一起删除
@@ -180,6 +191,7 @@ drwxr-xr-x  4 vbird3 vbird3 4096 Sep  4 18:15 .mozilla
 范例一：删除 vbird2 ，连同家目录一起删除
 [root@www ~]# userdel -r vbird2
 ```
+
 一般而言，如果该账号只是“暂时不激活”的话，那么将 /etc/shadow 里头账号失效日期 (第八字段) 配置为 0 就可以让该账号无法使用，但是所有跟该账号相关的数据都会留下来！ 使用 userdel 的时机通常是“你真的确定不要让该用户在主机上面使用任何数据了！”
 
 如果想要完整的将某个账号完整的移除，最好可以在下达 `userdel -r username` 之前， 先以 `find / -user username` 查出整个系统内属于 username 的文件，然后再加以删除吧！
@@ -187,8 +199,10 @@ drwxr-xr-x  4 vbird3 vbird3 4096 Sep  4 18:15 .mozilla
 ## 用户功能
 
 ### finger
+
 finger 可以查阅很多用户相关的信息，大部分都是在 /etc/passwd 这个文件里面的信息。
-```
+
+```sh
 [root@www ~]# finger [-s] username
 选项与参数：
 -s  ：仅列出用户的账号、全名、终端机代号与登陆时间等等；
@@ -202,6 +216,7 @@ Never logged in.
 No mail.
 No Plan.
 ```
+
 - Login：为使用者账号，亦即 /etc/passwd 内的第一字段；
 - Name：为全名，亦即 /etc/passwd 内的第五字段(或称为批注)；
 - Directory：就是家目录了；

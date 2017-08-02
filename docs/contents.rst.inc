@@ -17,6 +17,14 @@ Bash Shell
     account/user-and-group
     account/user-management
 
+文件与目录管理
+------------------
+
+ .. toctree::
+    :maxdepth: 1
+
+    file/path
+
 
 常用命令
 ------------------
