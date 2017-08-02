@@ -34,7 +34,7 @@ pwd是Print Working Directory的缩写，也就是显示当前所在目录的命
 
 ::
 
-  [root@www ~]# pwd [-P]
+  pwd [-P]
   
 选项与参数：
 
@@ -44,7 +44,7 @@ pwd是Print Working Directory的缩写，也就是显示当前所在目录的命
 ```````````````````````
 ::
   
-  [root@www ~]# mkdir [-mp] 目录名称
+  mkdir [-mp] 目录名称
 
 选项与参数：
 
@@ -58,7 +58,7 @@ pwd是Print Working Directory的缩写，也就是显示当前所在目录的命
 ````````````````````
 ::
 
-  [root@www ~]# rmdir [-p] 目录名称
+  rmdir [-p] 目录名称
 
 选项与参数：
 
